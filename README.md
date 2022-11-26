@@ -46,17 +46,17 @@ pip install -r requirements.txt
 ```  
 
 3. 运行  
-项目默认运行在8089端口，默认不开启gpu：  
+项目默认运行在3008端口，默认不开启gpu：  
 ``` shell script
-python backend/main.py [--port=8089][--open_gpu=0]
-# --port 指定运行时端口号 默认是8089  
+python backend/main.py [--port=3008][--open_gpu=0]
+# --port 指定运行时端口号 默认是3008  
 # --open_gpu 是否开启gpu 默认是0(不开启），可设置为1（开启）
 ```
 
 看到以下输出则代表安装成功： 
 ```shell script
 tr 2.3.0 https://github.com/myhub/tr
-Server is running: http://192.168.31.95:8089
+Server is running: http://192.168.31.95:3008
 Now version is: cpu
 ```   
 
@@ -67,7 +67,7 @@ Now version is: cpu
 docker build -t trwebocr:latest .
 
 # 运行镜像
-docker run -itd --rm -p 8089:8089 --name trwebocr trwebocr:latest 
+docker run -itd --rm -p 3008:3008 --name trwebocr trwebocr:latest 
 ```  
 
 ```shell script
@@ -75,9 +75,9 @@ docker run -itd --rm -p 8089:8089 --name trwebocr trwebocr:latest
 docker pull mmmz/trwebocr:latest
 
 # 运行镜像
-docker run -itd --rm -p 8089:8089 --name trwebocr mmmz/trwebocr:latest 
+docker run -itd -p 3008:3008 --name trwebocr mmmz/trwebocr:latest 
 ```  
-这里把容器的8089端口映射到了物理机的8089上，但如果你不喜欢映射，去掉run后面的`-p 8089:8089` 也可以使用docker的IP加`8089`来访问  
+这里把容器的3008端口映射到了物理机的3008上，但如果你不喜欢映射，去掉run后面的`-p 3008:3008` 也可以使用docker的IP加`3008`来访问  
 
 ## 接口文档  
 接口文档的内容放在了本项目的wiki里：  
@@ -87,7 +87,7 @@ docker run -itd --rm -p 8089:8089 --name trwebocr mmmz/trwebocr:latest
 * Python 使用File上传文件  
 ``` python
 import requests
-url = 'http://192.168.31.108:8089/api/tr-run/'
+url = 'http://192.168.31.108:3008/api/tr-run/'
 img1_file = {
     'file': open('img1.png', 'rb')
 }
@@ -103,7 +103,7 @@ def img_to_base64(img_path):
         b64 = base64.b64encode(read.read())
     return b64
     
-url = 'http://192.168.31.108:8089/api/tr-run/'
+url = 'http://192.168.31.108:3008/api/tr-run/'
 img_b64 = img_to_base64('./img1.png')
 res = requests.post(url=url, data={'img': img_b64})
 ```
