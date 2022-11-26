@@ -6,5 +6,5 @@ RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.
     && /usr/local/bin/python -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip3 install -r ./TrWebOCR/requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ \
     && python3 ./TrWebOCR/install.py
-EXPOSE 8089
+EXPOSE 3008
 CMD ["supervisord","-c","/TrWebOCR/supervisord.conf"]
