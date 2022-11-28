@@ -54,11 +54,14 @@ if __name__ == "__main__":
         manage_running_platform.change_version('gpu')
     app = make_app()
 
-    server = tornado.httpserver.HTTPServer(app)
+    server = tornado.httpserver.HTTPServer(app,ssl_options={
+        "certfile": "/etc/nginx/cert/5792506_www.majun.fun.pem",
+        "keyfile": "/etc/nginx/cert/5792506_www.majun.fun.key",
+    })
     # server.listen(port)
     server.bind(port)
     server.start(1)
-    print(f'Server is running: http://{host_ip()}:{port}')
+    print(f'Server is running: https://{host_ip()}:{port}')
     print(f'Now version is: {manage_running_platform.get_run_version()}')
 
     # tornado.ioloop.IOLoop.instance().start()
