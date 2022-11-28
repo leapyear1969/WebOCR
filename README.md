@@ -75,7 +75,7 @@ docker run -itd --rm -p 3008:3008 --name trwebocr trwebocr:latest
 docker pull mmmz/trwebocr:latest
 
 # 运行镜像
-docker run -itd -p 3008:3008 --name trwebocr mmmz/trwebocr:latest 
+docker run -itd -p 3008:3008 --name trwebocr naluspot/gitocr:latest 
 ```  
 这里把容器的3008端口映射到了物理机的3008上，但如果你不喜欢映射，去掉run后面的`-p 3008:3008` 也可以使用docker的IP加`3008`来访问  
 
